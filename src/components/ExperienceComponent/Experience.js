@@ -4,16 +4,16 @@ const N = 40;
 export default function Experience(props) {
   const [teachingYear, setTeachingYear] = React.useState(0);
   const [teachingMonth, setTeachingMonth] = React.useState(0);
-  const [teachingContent, setTeachingContent] = React.useState("");
+  const [teachingContent, setTeachingContent] = React.useState(sessionStorage.getItem("teachingContent"));
   const [industryYear, setIndustryYear] = React.useState(0);
   const [industryMonth, setIndustryMonth] = React.useState(0);
-  const [industryContent, setIndustryContent] = React.useState("");
+  const [industryContent, setIndustryContent] = React.useState(sessionStorage.getItem("industryContent"));
   const [researchYear, setResearchYear] = React.useState(0);
   const [researchMonth, setResearchMonth] = React.useState(0);
-  const [researchContent, setResearchContent] = React.useState("");
+  const [researchContent, setResearchContent] = React.useState(sessionStorage.getItem("researchContent"));
   const [adminstrativeYear, setAdminstrativeYear] = React.useState(0);
   const [adminstrativeMonth, setAdminstrativeMonth] = React.useState(0);
-  const [adminstrativeContent, setAdminstrativeContent] = React.useState("");
+  const [adminstrativeContent, setAdminstrativeContent] = React.useState(sessionStorage.getItem("adminstrativeContent"));
 
   React.useEffect(() => {
     const teachingObj = {
@@ -21,6 +21,7 @@ export default function Experience(props) {
       teachingMonth: teachingMonth,
       teachingContent: teachingContent,
     };
+    console.log(industryContent)
 
     const industryObject = {
       industryYear: industryYear,
@@ -46,8 +47,10 @@ export default function Experience(props) {
   });
   return (
     <div>
-      <h1>Experience</h1>
-
+     <div className="row"> 
+     <h1 className="col">Experience</h1>
+      <h6 className="col mx-2">Details should be seperated by "-"</h6>
+     </div>
       <div className="row">
         <h6 className="col-6">Teaching Experience in years and months</h6>
         <select
@@ -79,7 +82,9 @@ export default function Experience(props) {
         </select>
 
         <textarea
+        value={sessionStorage.getItem("teachingContent")}
           onChange={(e) => {
+            sessionStorage.setItem("teachingContent",e.target.value)
             setTeachingContent(e.target.value);
           }}
           className="form-control my-2"
@@ -117,11 +122,13 @@ export default function Experience(props) {
         </select>
 
         <textarea
+        value={sessionStorage.getItem("industryContent")}
           onChange={(e) => {
+            sessionStorage.setItem("industryContent",e.target.value)
             setIndustryContent(e.target.value);
           }}
           className="form-control my-2"
-          placeholder="List Major Roles and Responsibility Handled"
+          placeholder="List Major Roles and Responsibility Handled industryContent"
         />
       </div>
 
@@ -155,10 +162,12 @@ export default function Experience(props) {
           })}
         </select>
 
-        <textarea
-          onChange={(e) => {
-            setResearchContent(e.target.value);
-          }}
+        <textarea       
+         value={sessionStorage.getItem("researchContent")}
+         onChange={(e) => {
+           sessionStorage.setItem("researchContent",e.target.value)
+           setResearchContent(e.target.value);
+         }}
           className="form-control my-2"
           placeholder="List Major Roles and Responsibility Handled"
         />
@@ -184,6 +193,7 @@ export default function Experience(props) {
           name="FdpCount"
           id="ReasearchMonth"
           class="form-select col mx-2"
+
           onChange={(e) => {
             setAdminstrativeMonth(parseInt(e.target.value));
           }}
@@ -196,9 +206,11 @@ export default function Experience(props) {
         </select>
 
         <textarea
-          onChange={(e) => {
-            setAdminstrativeContent(e.target.value);
-          }}
+                  value={sessionStorage.getItem("adminstrativeContent")}
+                  onChange={(e) => {
+                    sessionStorage.setItem("adminstrativeContent",e.target.value)
+                    setAdminstrativeContent(e.target.value);
+                  }}
           className="form-control my-2"
           placeholder="List Major Roles and Responsibility Handled"
         />

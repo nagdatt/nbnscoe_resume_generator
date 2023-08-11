@@ -1,20 +1,26 @@
 import React from "react";
 const N = 40;
 export default function ResearchGuidence() {
-  React.useEffect(() => {
-    sessionStorage.setItem("Research_pg_students", 0);
-    sessionStorage.setItem("Research_phd_students", 0);
-    sessionStorage.setItem("total_paper_publication", 0);
-    sessionStorage.setItem("ugc_approved", 0);
-    sessionStorage.setItem("scopus_indexed", 0);
-    sessionStorage.setItem("sci_indexed", 0);
-    sessionStorage.setItem("details_of_publication", "");
-    sessionStorage.setItem("list_books_published", 0);
-    sessionStorage.setItem("detailed_list_of_books_published", "");
-    sessionStorage.setItem("number_of_patents", 0);
-    sessionStorage.setItem("detailed_list_of_patents", "");
-    sessionStorage.setItem("invited_as_resource_person", "");
-  }, []);
+  const [publicationdetail,setDetailpublication]=React.useState(sessionStorage.getItem("details_of_publication"))
+  const [list_of_books_publisheddetail,setDetaillist_of_books_published]=React.useState(sessionStorage.getItem("detailed_list_of_books_published"))
+  const [list_of_patentsdetail,setDetaillist_of_patents]=React.useState(sessionStorage.getItem("detailed_list_of_patents"))
+  const [invited_as_resource_persondetail,setDetailinvited_as_resource_person]=React.useState(sessionStorage.getItem("invited_as_resource_person"))
+
+  // React.useEffect(() => {
+  //   sessionStorage.setItem("Research_pg_students", 0);
+  //   sessionStorage.setItem("Research_phd_students", 0);
+  //   sessionStorage.setItem("total_paper_publication", 0);
+  //   sessionStorage.setItem("ugc_approved", 0);
+  //   sessionStorage.setItem("scopus_indexed", 0);
+  //   sessionStorage.setItem("sci_indexed", 0);
+  //   sessionStorage.setItem("details_of_publication", "");
+
+  //   sessionStorage.setItem("list_books_published", 0);
+  //   sessionStorage.setItem("detailed_list_of_books_published", "");
+  //   sessionStorage.setItem("number_of_patents", 0);
+  //   sessionStorage.setItem("detailed_list_of_patents", "");
+  //   sessionStorage.setItem("invited_as_resource_person", "");
+  // }, []);
   return (
     <div>
       <div className="row my-2">
@@ -27,6 +33,7 @@ export default function ResearchGuidence() {
           name="FdpCount"
           id="FdpCount"
           class="form-select col mx-2"
+         
           onChange={(e) => {
             sessionStorage.setItem("Research_pg_students",parseInt( e.target.value))
           }}
@@ -129,8 +136,10 @@ export default function ResearchGuidence() {
       <textarea
         className="form-control row my-2"
         placeholder="Detailed Publication list"
+        value={ sessionStorage.getItem("details_of_publication")}
         onChange={(e) => {
           sessionStorage.setItem("details_of_publication",  e.target.value);
+          setDetailpublication(e.target.value)
         }}
       />
       {/*  */}
@@ -140,8 +149,11 @@ export default function ResearchGuidence() {
           name="FdpCount"
           id="FdpCount"
           class="form-select col mx-2"
+          value={ sessionStorage.getItem("list_books_published")}
+
           onChange={(e) => {
             sessionStorage.setItem("list_books_published", parseInt(e.target.value));
+            setDetaillist_of_books_published(e.target.value)
           }}
         >
           {[...Array(N).keys()].map((index) => {
@@ -152,11 +164,13 @@ export default function ResearchGuidence() {
       <textarea
         className="form-control row my-2"
         placeholder="Detailed List of Books Published"
+        value={ sessionStorage.getItem("detailed_list_of_books_published")}
         onChange={(e) => {
           sessionStorage.setItem(
             "detailed_list_of_books_published",
             e.target.value
           );
+          setDetaillist_of_books_published(e.target.value)
         }}
       />
       {/* end */}
@@ -168,6 +182,7 @@ export default function ResearchGuidence() {
           name="FdpCount"
           id="FdpCount"
           class="form-select col mx-2"
+
           onChange={(e) => {
             sessionStorage.setItem("number_of_patents", parseInt(e.target.value));
           }}
@@ -180,16 +195,22 @@ export default function ResearchGuidence() {
       <textarea
         className="form-control row my-2"
         placeholder="Detailed List of Patents"
+        value={ sessionStorage.getItem("detailed_list_of_patents")}
+
         onChange={(e) => {
           sessionStorage.setItem("detailed_list_of_patents", e.target.value);
+          setDetaillist_of_patents(e.target.value)
         }}
       />
       <h6>Invited As Resource Person/ Expert/ Evaluator</h6>
       <textarea
         className="form-control row my-2"
         placeholder="Invited as Resource Person/ Expert/ Evaluator "
+        value={ sessionStorage.getItem("invited_as_resource_person")}
+
         onChange={(e) => {
           sessionStorage.setItem("invited_as_resource_person", e.target.value);
+          setDetailinvited_as_resource_person(e.target.value)
         }}
       />
 

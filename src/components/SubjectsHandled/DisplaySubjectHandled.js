@@ -12,7 +12,7 @@ export default function DisplaySubjectHandled() {
   return (
     <>
     {
-       ( ug!="" || pg!="")?(
+       ( (ug!=""  || pg!="") &&( ug!=null  || pg!=null))?(
 
         <>
         
@@ -23,7 +23,7 @@ export default function DisplaySubjectHandled() {
     
    </tr>
   {
-    ug==""?(
+    ug=="" || ug==null?(
         ""
     ):(
         <tr>
@@ -33,13 +33,13 @@ export default function DisplaySubjectHandled() {
                 </h6>
             </td>
             <td>
-                {ug}
+                <p>{ug}</p>
             </td>
         </tr>
     )
   }
    {
-    pg==""?(
+    pg==""|| pg==null?(
        ""
     ):(
         <tr>
@@ -49,7 +49,7 @@ export default function DisplaySubjectHandled() {
             </h6>
         </td>
         <td>
-            {pg}
+           <p> {pg}</p>
         </td>
     </tr>
     )

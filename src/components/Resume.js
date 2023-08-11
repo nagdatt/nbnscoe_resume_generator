@@ -6,20 +6,41 @@ import DisplayExperience from "./ExperienceComponent/DisplayExperience";
 import DisplayAreaOfInterest from "./AreaOfInterest/DisplayAreaOfInterest";
 import DisplaySubjectHandled from "./SubjectsHandled/DisplaySubjectHandled";
 import DisplayResearchGuidence from "./ResearchGuidence/DisplayResearchGuidence";
+import DisplayFdpComponent from "./FDPComponent/DisplayFdpComponent";
+import DisplayMoocComponent from "./MoocComponent/DisplayMoocComponent";
+import DisplayOthers from "./Others/DisplayOthers";
+import DisplayEducationalDetails from "./EducationalDetails/DisplayEducationalDetails";
+import DisplayProfile from "./DisplayPRofile/DisplayProfile";
+import DisplayGovernmentDetails from "./GovernmentDetails/DisplayGovernmentDetails";
+
 export default function Resume(props) {
   const location = useLocation();
+  const params=new URLSearchParams(location.search);
+  const paramNameValue = JSON.parse(params.get('paramName'));
   const data = location.state;
-
   const [fdp, setFdp] = React.useState([]);
+  const [mooc, setMooc] = React.useState([]);
 
   React.useEffect(() => {
     
-   console.log(data.fdp)
     const temp = [];
-    Object.keys(data.fdp).forEach((key) => {
-      temp.push(data.fdp[key]);
+    const temp2 = [];
+    const tempFdp=JSON.parse(sessionStorage.getItem("fdp"))
+    const tempMooc=JSON.parse(sessionStorage.getItem("mooc"))
+    if(tempFdp)
+   { Object.keys(tempFdp).forEach((key) => {
+      temp.push(tempFdp[key]);
     });
     setFdp(temp);
+  }
+    if(tempMooc)
+   { Object.keys(tempMooc).forEach((key) => {
+      temp2.push(tempMooc[key]);
+    });
+    setMooc(temp2)
+  }
+   
+    
   }, []);
   const printContent = () => {
     window.print();
@@ -35,47 +56,10 @@ export default function Resume(props) {
       </Button>
       <div id="printable-content">
         <table class="table table-striped" style={{ width: "100%" }}>
-          <tr>
-            <td style={{ width: "25%" }}>
-              <h6>Photo</h6>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <h6>Name</h6>
-            </td>
-            <td>
-              <p>
-                {data?.selectedSalutations} {data?.name} {data?.middleName}{" "}
-                {data?.lastName}
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h6>Designation</h6>
-            </td>
-            <td>
-              <p>{data?.designation}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h6>Qualification</h6>
-            </td>
-            <td>
-              <p>{data?.qualification}</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h6>Email</h6>
-            </td>
-            <td>
-              <p>{data?.email}</p>
-            </td>
-          </tr>
+         <DisplayProfile data={data}/>
+          {/* Educational Table */}
+          <DisplayEducationalDetails/>
+          {/* End Educational Table */}
           {/* Experince Table */}
           <DisplayExperience/>
           <DisplayAreaOfInterest/>
@@ -89,44 +73,11 @@ export default function Resume(props) {
         {/* End Research And Guidence */}
         
           {/* FDP Table */}
-          {fdp.length == 0 ? (
-            ""
-          ) : (
-            <>
-              <tr>
-                <td colSpan={2}>
-                  <h6>FDP/STTP/Workshop Attended: {fdp.length}</h6>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <table style={{ width: "100%" }}>
-                    <tr>
-                      <th style={{ width: "5%" }}> Sr.No</th>
-                      <th style={{ width: "30%" }}> Title</th>
-                      <th style={{ width: "30%" }}> Organized by</th>
-                      <th style={{ width: "15%" }}> Dates from to</th>
-                      <th style={{ width: "15%" }}> Duration in Weeks</th>
-                    </tr>
-                    {fdp.map((ele, id) => {
-                      return (
-                        <tr>
-                          <td>{id + 1}</td>
-                          <td>{ele.title}</td>
-                          <td>{ele.organized}</td>
-                          <td>
-                            {ele.from} to {ele.to}
-                          </td>
-                          <td>{ele.duration}</td>
-                        </tr>
-                      );
-                    })}
-                  </table>
-                </td>
-              </tr>
-            </>
-          )}
-          {/* FDP Table End */}
+          <DisplayFdpComponent fdp={fdp}/>
+          <DisplayMoocComponent mooc={mooc}/>
+
+          <DisplayOthers/>
+          <DisplayGovernmentDetails/>
         </table>
       </div>
       <Button

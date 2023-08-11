@@ -1,24 +1,33 @@
 import React from "react";
-
+const delimiter="-"
 export default function DisplayExperience(props) {
   const [experience, setExperience] = React.useState([]);
   const [booleanExp, setBooleanExp] = React.useState([]);
-  const [totalExperience,setTotalExperience]=React.useState([0,0])
+  const [totalExperience, setTotalExperience] = React.useState([0, 0]);
   React.useEffect(() => {}, [experience]);
   React.useEffect(() => {
     let exp = sessionStorage.getItem("experience");
     let sum = 0;
+    let sumYear=0
+    let sumMonth=0
     let exp2 = JSON.parse(exp);
+    console.log(exp2)
     sum += exp2[0].teachingYear + exp2[0].teachingMonth;
-    console.log(sum);
+    sumYear+=exp2[0].teachingYear
+    sumMonth+=exp2[0].teachingMonth
 
     sum += exp2[1].industryYear + exp2[1].industryMonth;
-        console.log(sum);
+    sumYear+=exp2[1].industryYear
+    sumMonth+=exp2[1].industryMonth
 
     sum += exp2[2].researchYear + exp2[2].researchMonth;
-    sum += exp2[3]?.adminstrativeYear + exp2[3]?.adminstrativeMonth;
-    console.log(sum);
+    sumYear+=exp2[2].researchYear
+    sumMonth+=exp2[2].researchMonth
 
+    sum += exp2[3]?.adminstrativeYear + exp2[3]?.adminstrativeMonth;
+    sumYear+=exp2[3].adminstrativeYear
+    sumMonth+=exp2[3].adminstrativeMonth
+    setTotalExperience([sumYear,sumMonth])
     setBooleanExp(sum > 0 ? true : false);
     setExperience(JSON.parse(exp));
   }, []);
@@ -30,7 +39,10 @@ export default function DisplayExperience(props) {
         <>
           <tr>
             <td colSpan={2}>
-              <h6>Total Experience : {totalExperience[0]} Years and {totalExperience[1]} Months </h6>
+              <h6>
+                Total Experience : {totalExperience[0]} Years and{" "}
+                {totalExperience[1]} Months{" "}
+              </h6>
             </td>
           </tr>
           {/* Teaching */}
@@ -56,7 +68,12 @@ export default function DisplayExperience(props) {
                   <h6> Major Roles and Responsibilities Handled in Teaching</h6>
                 </td>
                 <td>
-                  <p>{experience[0]?.teachingContent}</p>
+                  <p>
+                    {experience[0]?.teachingContent?.split(delimiter).map((e) => {
+                      if (e != "") return <li>{e}</li>;
+                      return "";
+                    })}
+                  </p>
                 </td>
               </tr>
             </>
@@ -65,7 +82,7 @@ export default function DisplayExperience(props) {
 
           {/* Industry */}
 
-          {(experience[1]?.industryYear + experience[1]?.industryMonth == 0) ? (
+          {experience[1]?.industryYear + experience[1]?.industryMonth == 0 ? (
             ""
           ) : (
             <>
@@ -86,16 +103,21 @@ export default function DisplayExperience(props) {
                   <h6> Major Roles and Responsibilities Handled in Industry</h6>
                 </td>
                 <td>
-                  <p>{experience[1]?.industryContent}</p>
+                  <p>
+                    {experience[1]?.industryContent?.split(delimiter).map((e) => {
+                      if (e != "") return <li>{e}</li>;
+                      return "";
+                    })}
+                  </p>
                 </td>
               </tr>
             </>
           )}
           {/* End Industry */}
 
-           {/* Research */}
+          {/* Research */}
 
-           {(experience[2]?.researchYear + experience[2]?.researchMonth == 0) ? (
+          {experience[2]?.researchYear + experience[2]?.researchMonth == 0 ? (
             ""
           ) : (
             <>
@@ -116,16 +138,23 @@ export default function DisplayExperience(props) {
                   <h6> Major Roles and Responsibilities Handled in Research</h6>
                 </td>
                 <td>
-                  <p>{experience[2]?.researchContent}</p>
+                  <p>
+                    {experience[2]?.researchContent?.split(delimiter).map((e) => {
+                      if (e != "") return <li>{e}</li>;
+                      return "";
+                    })}
+                  </p>
                 </td>
               </tr>
             </>
           )}
           {/* End Research */}
 
-           {/* Adminstrative */}
+          {/* Adminstrative */}
 
-           {(experience[3]?.adminstrativeYear + experience[3]?.adminstrativeMonth == 0) ? (
+          {experience[3]?.adminstrativeYear +
+            experience[3]?.adminstrativeMonth ==
+          0 ? (
             ""
           ) : (
             <>
@@ -146,7 +175,12 @@ export default function DisplayExperience(props) {
                   <h6> Major Roles and Responsibilities Handled in Research</h6>
                 </td>
                 <td>
-                  <p>{experience[3]?.adminstrativeContent}</p>
+                  <p>
+                  {experience[3]?.adminstrativeContent?.split(delimiter).map((e) => {
+                      if (e != "") return <li>{e}</li>;
+                      return "";
+                    })}
+                  </p>
                 </td>
               </tr>
             </>

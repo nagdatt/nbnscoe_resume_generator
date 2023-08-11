@@ -28,9 +28,18 @@ export default function DisplayResearchGuidence() {
       "invited_as_resource_person"
     );
 
-    if(Research_pg_students!= 0 || Research_phd_students!= 0 || total_paper_publication!= 0 || ugc_approved!= 0
+    if((Research_pg_students!= 0 || Research_phd_students!= 0 || total_paper_publication!= 0 || ugc_approved!= 0
         || scopus_indexed!= 0 || sci_indexed!= 0 ||  details_of_publication!="" || list_books_published != 0|| detailed_list_of_books_published!=""
         || number_of_patents!= 0 || detailed_list_of_patents!="" || invited_as_resource_person!= 0 || invited_as_resource_person!=""
+        )
+
+        &&(
+          Research_pg_students!= null || Research_phd_students!= null || total_paper_publication!= null || ugc_approved!= null
+          || scopus_indexed!= null || sci_indexed!= null||  details_of_publication!=null || list_books_published !=null|| detailed_list_of_books_published!=null
+          || number_of_patents!= null || detailed_list_of_patents!=null || invited_as_resource_person!=null || invited_as_resource_person!=null
+
+        )
+        
         ){
        
                 setBool(true)
@@ -50,7 +59,7 @@ export default function DisplayResearchGuidence() {
               <h6>Research And Guidence</h6>
             </td>
           </tr>
-          {sessionStorage.getItem("Research_pg_students") != 0 && (
+          {sessionStorage.getItem("Research_pg_students") != 0 && sessionStorage.getItem("Research_pg_students") != null && (
             <tr>
               <td>
                 <h6>Number of PG Students Guidance</h6>
@@ -63,7 +72,7 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("Research_phd_students") != 0 && (
+          {sessionStorage.getItem("Research_phd_students") != 0 && sessionStorage.getItem("Research_phd_students") != null && (
             <tr>
               <td>
                 <h6>Number of PhD Students Guidance</h6>
@@ -76,20 +85,34 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("invited_as_resource_person") != "" && (
+          {sessionStorage.getItem("invited_as_resource_person") != "" && sessionStorage.getItem("invited_as_resource_person") != null && (
             <tr>
               <td>
                 <h6>Invited as Resource Person/ Expert/ Evaluator</h6>
               </td>
               <td>
-                <p>{sessionStorage.getItem("invited_as_resource_person")}</p>
+               <p>
+               <ul>
+                  {sessionStorage.getItem("invited_as_resource_person")?.split("-").map((e)=>{
+                      if(e!=""){
+                        return <li>{e}</li>
+                      }
+                      return ""
+                })
+                
+                
+                
+                }
+                </ul>
+                
+               </p>
               </td>
             </tr>
           )}
 
           {/*  */}
 
-          {sessionStorage.getItem("total_paper_publication") != 0 && (
+          {sessionStorage.getItem("total_paper_publication") != 0 &&  sessionStorage.getItem("total_paper_publication") != null &&(
             <tr>
               <td>
                 <h6>Total Paper Publications</h6>
@@ -102,7 +125,7 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("ugc_approved") != 0 && (
+          {sessionStorage.getItem("ugc_approved") != 0 &&sessionStorage.getItem("ugc_approved") != null && (
             <tr>
               <td>
                 <h6>UGC Approved</h6>
@@ -115,7 +138,7 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("scopus_indexed") != 0 && (
+          {sessionStorage.getItem("scopus_indexed") != 0 && sessionStorage.getItem("scopus_indexed") != null && (
             <tr>
               <td>
                 <h6>Scopus Indexed</h6>
@@ -128,7 +151,7 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("sci_indexed") != 0 && (
+          {sessionStorage.getItem("sci_indexed") != 0 && sessionStorage.getItem("sci_indexed") != null &&  (
             <tr>
               <td>
                 <h6>SCI Indexed</h6>
@@ -141,20 +164,33 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("details_of_publication") != "" && (
+          {sessionStorage.getItem("details_of_publication") != "" &&  sessionStorage.getItem("details_of_publication") != null && (
             <tr>
               <td>
                 <h6>Detailed Publication list</h6>
               </td>
               <td>
-                <p>{sessionStorage.getItem("details_of_publication")}</p>
+                <p>
+                  <ol>
+                  {sessionStorage.getItem("details_of_publication")?.split("-").map((e)=>{
+                      if(e!=""){
+                        return <li>{e}</li>
+                      }
+                      return ""
+                })
+                
+                
+                
+                }
+                </ol>
+                </p>
               </td>
             </tr>
           )}
 
           {/*  */}
 
-          {sessionStorage.getItem("list_books_published") != 0 && (
+          {sessionStorage.getItem("list_books_published") != 0 && sessionStorage.getItem("list_books_published") != null && (
             <tr>
               <td>
                 <h6>Number Of Books Published</h6>
@@ -167,21 +203,33 @@ export default function DisplayResearchGuidence() {
 
           {/*  */}
 
-          {sessionStorage.getItem("detailed_list_of_books_published") != "" && (
+          {sessionStorage.getItem("detailed_list_of_books_published") != "" && sessionStorage.getItem("detailed_list_of_books_published") != null && (
             <tr>
               <td>
                 <h6>Detailed List of Books Published</h6>
               </td>
               <td>
                 <p>
-                  {sessionStorage.getItem("detailed_list_of_books_published")}
+
+                  <ol>
+                  {sessionStorage.getItem("detailed_list_of_books_published")?.split("-").map((e)=>{
+                      if(e!=""){
+                        return <li>{e}</li>
+                      }
+                      return ""
+                })
+                
+                
+                
+                }
+                </ol>
                 </p>
               </td>
             </tr>
           )}
           {/*  */}
 
-          {sessionStorage.getItem("number_of_patents") != 0 && (
+          {sessionStorage.getItem("number_of_patents") != 0 && sessionStorage.getItem("number_of_patents") != null  &&(
             <tr>
               <td>
                 <h6>Number Of Patents</h6>
@@ -194,13 +242,27 @@ export default function DisplayResearchGuidence() {
 
            {/*  */}
 
-           {sessionStorage.getItem("detailed_list_of_patents") != "" && (
+           {sessionStorage.getItem("detailed_list_of_patents") != "" &&  sessionStorage.getItem("detailed_list_of_patents") != null && (
             <tr>
               <td>
                 <h6>Detailed List of Patents</h6>
               </td>
               <td>
-                <p>{sessionStorage.getItem("detailed_list_of_patents")}</p>
+
+               <p>
+               <ol>
+                  {sessionStorage.getItem("detailed_list_of_patents")?.split("-").map((e)=>{
+                      if(e!=""){
+                        return <li>{e}</li>
+                      }
+                      return ""
+                })
+                
+                
+                
+                }
+                </ol>
+               </p>
               </td>
             </tr>
           )}
