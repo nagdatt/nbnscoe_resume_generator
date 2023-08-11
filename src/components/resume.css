@@ -1,0 +1,30 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+
+  body{
+    margin: 10px;
+  }
+h4{
+    margin-left: 10px;
+}
+p{
+    margin-left: 10px;
+}
+.printButton{
+    width: 80px;
+    margin: 10px;
+}
+  @media print {
+    /* Hide non-essential elements */
+    body {
+      background-color: white;
+    }
+  
+    .print-button-container {
+      display: none; 
+    }
+  
+  }
