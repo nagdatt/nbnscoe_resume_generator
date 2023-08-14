@@ -26,6 +26,8 @@ export default function ResearchGuidence() {
       <div className="row my-2">
         <h1 className="my-2 col">Research And Guidence</h1>
       </div>
+      <h6 className="col mx-2" style={{color:"red"}}>      ("$" is considered as new bullet point)
+</h6>
       {/*  */}
       <div className="row my-2">
         <h6 className="col"> Number of PG Students Guided</h6>

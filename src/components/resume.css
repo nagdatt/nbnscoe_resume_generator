@@ -14,8 +14,6 @@ p{
     margin-left: 10px;
 }
 .printButton{
-    width: 80px;
-    margin: 10px;
 }
   @media print {
     /* Hide non-essential elements */

@@ -1,5 +1,5 @@
 import React from "react";
-
+const delimiter="$";
 export default function DisplayResearchGuidence() {
   const [bool, setBool] = React.useState(false);
   React.useEffect(() => {
@@ -93,7 +93,7 @@ export default function DisplayResearchGuidence() {
               <td>
                <p>
                <ul>
-                  {sessionStorage.getItem("invited_as_resource_person")?.split("-").map((e)=>{
+                  {sessionStorage.getItem("invited_as_resource_person")?.split(delimiter).map((e)=>{
                       if(e!=""){
                         return <li>{e}</li>
                       }
@@ -172,7 +172,7 @@ export default function DisplayResearchGuidence() {
               <td>
                 <p>
                   <ol>
-                  {sessionStorage.getItem("details_of_publication")?.split("-").map((e)=>{
+                  {sessionStorage.getItem("details_of_publication")?.split(delimiter).map((e)=>{
                       if(e!=""){
                         return <li>{e}</li>
                       }
@@ -212,7 +212,7 @@ export default function DisplayResearchGuidence() {
                 <p>
 
                   <ol>
-                  {sessionStorage.getItem("detailed_list_of_books_published")?.split("-").map((e)=>{
+                  {sessionStorage.getItem("detailed_list_of_books_published")?.split(delimiter).map((e)=>{
                       if(e!=""){
                         return <li>{e}</li>
                       }
@@ -251,7 +251,7 @@ export default function DisplayResearchGuidence() {
 
                <p>
                <ol>
-                  {sessionStorage.getItem("detailed_list_of_patents")?.split("-").map((e)=>{
+                  {sessionStorage.getItem("detailed_list_of_patents")?.split(delimiter).map((e)=>{
                       if(e!=""){
                         return <li>{e}</li>
                       }

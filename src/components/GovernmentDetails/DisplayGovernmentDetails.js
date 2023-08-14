@@ -8,9 +8,14 @@ export default function DisplayGovernmentDetails() {
             Government Details</h6></td>
     </tr>
     <tr>
+        <td><h6>Employee Code</h6></td>
+        <td><p>{sessionStorage.getItem("g_emp_code")}</p></td>
+    </tr>
+    <tr>
         <td><h6>Adhar Card Number</h6></td>
         <td><p>{sessionStorage.getItem("g_adhar")}</p></td>
     </tr>
+
 
     {
         sessionStorage.getItem("g_pan")!=null && sessionStorage.getItem("g_pass")!="" &&(

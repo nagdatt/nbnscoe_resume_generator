@@ -11,7 +11,7 @@ export default function DisplayEducationalDetails() {
     </td>
     <td >
       <ul className='mx-2'>
-       <p >{EducationalDetails?.split("-").map((e)=>{
+       <p >{EducationalDetails?.split("$").map((e)=>{
           if(e!="")
           return <li>{e}</li>
           return ""

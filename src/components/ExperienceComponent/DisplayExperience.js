@@ -1,5 +1,5 @@
 import React from "react";
-const delimiter="-"
+const delimiter="$"
 export default function DisplayExperience(props) {
   const [experience, setExperience] = React.useState([]);
   const [booleanExp, setBooleanExp] = React.useState([]);
@@ -40,8 +40,8 @@ export default function DisplayExperience(props) {
           <tr>
             <td colSpan={2}>
               <h6>
-                Total Experience : {totalExperience[0]} Years and{" "}
-                {totalExperience[1]} Months{" "}
+                Total Experience : {sessionStorage.getItem("totalexpyear")} Years and{" "}
+                {sessionStorage.getItem("totalexpmonth")} Months{" "}
               </h6>
             </td>
           </tr>

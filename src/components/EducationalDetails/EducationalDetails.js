@@ -10,15 +10,18 @@ export default function EducationalDetails() {
 
         <h1 className='my-2 row'>
         Educational Details </h1>
-        <h6>
-        Educational Details (seperated by "-")
+        <h6 style={{color:"red"}}>
+      ("$" is considered as new bullet point)
         </h6>
+        <h6> Educational Details</h6>
             <textarea className='form-control row my-4' 
+              rows={4}
             value={sessionStorage.getItem("educationalDetails")}
             onChange={(e)=> {setEducationalDetails(e.target.value)
             sessionStorage.setItem("educationalDetails",e.target.value)
+          
             }
-}  placeholder='Educational details' />
+}  placeholder='$ ED 1. $ ED2' />
        
     </div>
   )
