@@ -1,0 +1,42 @@
+/* src/SplashScreen.css */
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e57373; /* Reddish background color */
+    opacity: 0; /* Set initial opacity to 0 for fade-in effect */
+    animation: fadeIn 1s ease-in-out forwards; /* Apply the fade-in animation */
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .splash-title {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .loading-bar-container {
+    width: 200px; /* Adjust this as needed */
+    height: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .loading-bar {
+    height: 100%;
+    background-color: yellow; /* Yellow progress bar color */
+    transition: width 0.3s ease-in-out;
+  }
+  

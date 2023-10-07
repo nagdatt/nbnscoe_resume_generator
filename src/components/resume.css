@@ -3,7 +3,10 @@ table, th, td {
     border-collapse: collapse;
     
   }
-
+   footer {
+    display: none; /* Hide header and footer for screen display */
+  }
+  
   body{
     margin: 10px;
   }
@@ -24,5 +27,18 @@ p{
     .print-button-container {
       display: none; 
     }
+   
   
+    footer {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 10px;
+    }
   }
+
+

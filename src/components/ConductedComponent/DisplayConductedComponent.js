@@ -1,11 +1,8 @@
 import React from 'react'
 import { fontSizeForResume } from '../staticDimentions';
 
-export default function DisplayFdpComponent() {
- console.log(localStorage.getItem("fdp_or_sttp"))
-  const [fdp,setFDP]=React.useState(JSON.parse(localStorage.getItem("fdp_or_sttp")))
-
-
+export default function DisplayConductedComponent() {
+  const [fdp,setFDP]=React.useState(JSON.parse(localStorage.getItem("conducted_component")))
   function convertDaysToMonthsWeeksDays(days) {
     if (isNaN(days) || days < 0) {
       return 0;
@@ -42,7 +39,7 @@ export default function DisplayFdpComponent() {
     const daysDifference = Math.floor(millisecondsDifference / (1000 * 60 * 60 * 24));
     const months=daysDifference/31;
   
-   return convertDaysToMonthsWeeksDays( daysDifference)
+   return convertDaysToMonthsWeeksDays(daysDifference)
   }
   return (
    <>
@@ -52,7 +49,7 @@ export default function DisplayFdpComponent() {
             <>
               <tr>
                 <td colSpan={2}>
-                  <h6>FDP/STTP/Workshop Attended: {fdp.length}</h6>
+                  <h6>FDP/STTP/Workshop Conducted: {fdp.length}</h6>
                 </td>
               </tr>
               <tr style={{fontSize:fontSizeForResume}}>
@@ -60,10 +57,11 @@ export default function DisplayFdpComponent() {
                   <table style={{ width: "100%" }}>
                     <tr>
                       <th style={{ width: "5%",textAlign:"center" }}> Sr.No</th>
-                      <th style={{ width: "30%" ,textAlign:"center" }}> Title</th>
-                      <th style={{ width: "30%" ,textAlign:"center" }}> Organized by</th>
+                      <th style={{ width: "20%" ,textAlign:"center" }}> Title</th>
+                      <th style={{ width: "20%" ,textAlign:"center" }}> Organized by</th>
+                      <th style={{ width: "20%" ,textAlign:"center" }}> Worked As</th>
                       <th style={{ width: "15%" ,textAlign:"center" }}> Dates from to</th>
-                      <th style={{ width: "15%",textAlign:"center"  }}> Duration in Weeks/ Months</th>
+                      <th style={{ width: "15%",textAlign:"center"  }}> Duration in Weeks/ Days</th>
                     </tr>
                     {fdp.map((ele, id) => {
                       return (
@@ -71,6 +69,7 @@ export default function DisplayFdpComponent() {
                           <td style={{ textAlign:"center" }}>{id + 1}</td>
                           <td >{ele.title}</td>
                           <td>{ele.organizedBy}</td>
+                          <td>{ele.workedas}</td>
                           <td style={{ textAlign:"center" }}>
                             {ele.fromDate} to {ele.toDate}
                           </td>

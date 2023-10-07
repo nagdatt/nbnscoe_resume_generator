@@ -1,11 +1,12 @@
 import React from 'react'
-
+import { fontSizeForResume } from '../staticDimentions'
+const delemeter="$"
 export default function DisplayOthers() {
 
     
-    const [achivemnets,setAchievements]=React.useState(sessionStorage.getItem("achivemnets"))
-    const [membership,setMembership]=React.useState(sessionStorage.getItem("membership"))
-    const [projects,setProjects]=React.useState(sessionStorage.getItem("projects"))
+    const [achivemnets,setAchievements]=React.useState(localStorage.getItem("achivemnets"))
+    const [membership,setMembership]=React.useState(localStorage.getItem("membership"))
+    const [projects,setProjects]=React.useState(localStorage.getItem("projects"))
 
     React.useEffect(()=>{
 
@@ -13,7 +14,7 @@ export default function DisplayOthers() {
   return (
     <>
     {
-        (achivemnets!=""  && membership!="" && projects!="" && achivemnets!=null  && membership!=null && projects!=null)?(
+        ((achivemnets!="" && achivemnets!=null)  ||( membership!="" && membership!=null) || (projects!=""    && projects!=null))?(
 
             <>
             <tr>
@@ -24,17 +25,23 @@ export default function DisplayOthers() {
                 </td>
             </tr>
             {
-                achivemnets!="" && (
+                achivemnets!="" && achivemnets!=null && (
                     <tr>
                         <td>
                             <h6>
                             Achievements & Awards
                             </h6>
                         </td>
-                        <td>
-                            <p>
-                                {achivemnets}
-                            </p>
+                        <td style={{fontSize:fontSizeForResume}}>
+                        <p>
+                               <ol>
+                               {achivemnets?.split(delemeter).map((e)=>{
+                                if(e!="")
+                                   return <p><li>{e}</li></p>
+                                })}
+                               </ol>
+                               </p>
+                            
                         </td>
                     </tr>
                 )
@@ -48,9 +55,15 @@ export default function DisplayOthers() {
                             Professional Memberships
                             </h6>
                         </td>
-                        <td>
+                        <td style={{fontSize:fontSizeForResume}}>
                             <p>
-                                {membership}
+                                
+                                <ol>
+                               {membership?.split(delemeter).map((e)=>{
+                                if(e!="")
+                                   return <p><li>{e}</li></p>
+                                })}
+                               </ol>
                             </p>
                         </td>
                     </tr>
@@ -65,9 +78,15 @@ export default function DisplayOthers() {
                     Major Projects Handled
                     </h6>
                 </td>
-                <td>
+                <td style={{fontSize:fontSizeForResume}}>
                     <p>
-                        {projects}
+                        {}
+                        <ol>
+                               {projects?.split(delemeter).map((e)=>{
+                                    if(e!="")
+                                   return <p><li>{e}</li></p>
+                                })}
+                               </ol>
                     </p>
                 </td>
             </tr>

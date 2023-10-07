@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "./../../images/left_icon.jpg";
+import { fontSmallSizeForResume } from "../staticDimentions";
 export default function Header() {
   return (
     <>
-    
+     
         <td colSpan={2}>
           <div className="row">
             <div className="col-1" style={{ marginTop: "10px" ,marginRight:"30px"}}>
@@ -32,12 +33,21 @@ export default function Header() {
                 </h5>
               </div>
               <div className="row g-1">
-                <p style={{ fontFamily: "Times New Roman" }}>
+                <p style={{ fontFamily: "Times New Roman" ,  marginBottom:"3px" }}>
                   <b>
                     <i>
-                      (Approved by AICTE & Affiliated to Solapur University,
+                      (Approved by AICTE & Affiliated to P. A. H. Solapur University,
                       Solapur)
                     </i>
+                  </b>
+                </p>
+              </div>
+              <div className="row g-1">
+                <p style={{ fontFamily: "Times New Roman" }}>
+                  <b>
+                    <u>
+                    CURRICULAM VITAE
+                    </u>
                   </b>
                 </p>
               </div>
@@ -51,6 +61,7 @@ export default function Header() {
               />
             </div>
           </div>
+         
         </td>
      
     </>

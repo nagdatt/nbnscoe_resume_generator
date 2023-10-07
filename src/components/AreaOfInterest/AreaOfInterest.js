@@ -7,15 +7,20 @@ export default function AreaOfInterest() {
     },[areaOfInterest])
   return (
     <div className='row my-2'>
-        <h1 className='my-2 col'>
-            Area of interest
+      
+        <h6 className='my-2 col'>
+            Area of Interest <br/>
+            <small className="col " style={{ color: "red" }}>
+       
+        ("$" is considered as new bullet point)
+      </small>
             <textarea className='form-control col my-4' 
-            value={sessionStorage.getItem("areaOfInterest")}
+            value={localStorage.getItem("areaOfInterest")}
             onChange={(e)=> {setAreaOfInterest(e.target.value)
-            sessionStorage.setItem("areaOfInterest",e.target.value)
+            localStorage.setItem("areaOfInterest",e.target.value)
             }
 }  placeholder='Area of Interest' />
-        </h1>
+        </h6>
     </div>
   )
 }

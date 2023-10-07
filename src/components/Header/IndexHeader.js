@@ -5,13 +5,15 @@ export default function IndexHeader() {
     <>
     
         <div colSpan={2} style={{padding:"10px"}}>
+
           <div className="row">
-            <div className="col-1" style={{ marginTop: "10px" ,marginRight:"30px"}}>
-              <img src="./left_icon.jpg"   width={"70px"}
-                height={"90px"} />
+            <div className="col-2 text-center" >
+              <img src="./left_icon.jpg"   width={"100px"}
+                height={"100px"} />
             </div>
+
             <div
-              className="col"
+              className="col "
               style={{ textAlign: "center" }}
             >
               <div className="row g-1">
@@ -36,26 +38,40 @@ export default function IndexHeader() {
                 <p style={{ fontFamily: "Times New Roman" }}>
                   <b>
                     <i>
-                      (Approved by AICTE & Affiliated to Solapur University,
+                      (Approved by AICTE & Affiliated to P. A. H. Solapur University,
                       Solapur)
                     </i>
                   </b>
                 </p>
               </div>
+              <div className="row g-1">
+                <p style={{ fontFamily: "Times New Roman" }}>
+                  <b>
+                    <u>
+                    CURRICULAM VITAE
+                    </u>
+                  </b>
+                </p>
+              </div>
+              <div className="row g-1">
+                <p style={{ fontFamily: "Times New Roman" }}>
+                  <b>
+                    <u>
+                   Resume Generator
+                    </u>
+                  </b>
+                </p>
+              </div>
             </div>
-            <div className="col-1">
+            <div className="col-2 text-center">
               <img
                 src="./right_icon.png"
                 width={"70px"}
                 height={"90px"}
-                style={{ marginTop: "10px" }}
+               
               />
             </div>
-            <div className="row g-1" style={{textAlign:"center",width:"100%"}}>
-            <h4 style={{ fontFamily: "Times New Roman" }}>
-              Resume Generator
-            </h4>
-          </div>
+           
           </div>
         
         </div>
